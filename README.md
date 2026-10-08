@@ -20,9 +20,9 @@
                     :%%##%##%%+=--= ----=
 ```
 
-Нужен только `python3` (в Ubuntu и большинстве дистрибутивов уже есть). Никаких библиотек, ffmpeg и интернета: все 90 кадров зашиты в один файл.
+Работает на Linux и Windows. Нужен только Python 3 (в Ubuntu и большинстве дистрибутивов уже есть). Никаких библиотек, ffmpeg и интернета: все 90 кадров зашиты в один файл.
 
-## Установка
+## Установка на Linux
 
 Одной командой:
 
@@ -40,6 +40,19 @@ sh install.sh
 
 Если после установки пишет «команда не найдена», перезапусти терминал.
 
+## Установка на Windows
+
+1. Поставь Python: из Microsoft Store или с [python.org](https://www.python.org/downloads/) (при установке отметь галочку **Add python.exe to PATH**).
+2. Открой **Windows Terminal** (Пуск → «Терминал») и выполни:
+
+```
+irm https://raw.githubusercontent.com/Yozmor/zerotwo/main/install.ps1 | iex
+```
+
+3. Открой **новое** окно терминала и набери `zerotwo`.
+
+Установщик кладёт программу в `%LOCALAPPDATA%\zerotwo` и добавляет эту папку в PATH пользователя. Запускай в Windows Terminal: в старом окне `cmd` анимация может работать хуже.
+
 ## Запуск
 
 ```
@@ -52,8 +65,16 @@ zerotwo
 
 ## Удаление
 
+Linux:
+
 ```
 rm ~/.local/bin/zerotwo
+```
+
+Windows (PowerShell):
+
+```
+Remove-Item -Recurse "$env:LOCALAPPDATA\zerotwo"
 ```
 
 ## Как это сделано

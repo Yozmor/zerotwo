@@ -2,7 +2,10 @@
 # zerotwo: танец 02 символами в терминале, крутится по кругу.
 #   запуск: zerotwo      выход: Ctrl+C
 # Чем мельче шрифт в терминале (Ctrl + -), тем детальнее картинка.
-import base64, shutil, sys, time, zlib
+import base64, os, shutil, sys, time, zlib
+
+if os.name == "nt":
+    os.system("")   # Windows: включает поддержку управляющих кодов терминала
 
 RAMP = " .:-=+*#%@"   # от тёмного к яркому
 FPS = 24
@@ -57,7 +60,7 @@ def main():
                 size, cache = cs, {}
                 out.write("\033[2J")
             if i not in cache:
-                cache[i] = render(i, w, h, lum, cs.columns, cs.lines - 1)
+                cache[i] = render(i, w, h, lum, cs.columns - 1, cs.lines - 1)
             out.write(cache[i]); out.flush()
             i = (i + 1) % n
             time.sleep(max(0, 1 / FPS - (time.time() - t)))
